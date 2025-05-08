@@ -1023,6 +1023,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 2
+  chair: {fileID: 1290189294}
+  chairSpinSpeed: 0.5
   lockCamera: 0
 --- !u!114 &330585549
 MonoBehaviour:
@@ -3375,6 +3377,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 407e4e65456601c4ba66e0697b1c325c, type: 3}
+--- !u!1 &1290189294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1248434477200255633, guid: dc35c61ecac9f3e4ea7e96c2ce7f1218, type: 3}
+  m_PrefabInstance: {fileID: 1313705918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1313705918
 PrefabInstance:
   m_ObjectHideFlags: 0
