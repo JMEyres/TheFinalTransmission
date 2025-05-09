@@ -13,6 +13,7 @@ public class ThirdEvent : MonoBehaviour, StoryEvent
     public void OnStoryEventTriggered(string id)
     {
         Debug.Log("Third event triggered");
+        StoryManager.Instance.ResumeTimeline();
     }
     
     public float GetTriggerTime()

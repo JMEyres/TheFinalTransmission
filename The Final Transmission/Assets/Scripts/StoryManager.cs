@@ -7,12 +7,13 @@ using UnityEngine.SceneManagement;
 public class StoryManager : MonoBehaviour
 {
     private Dictionary<string, StoryEvent> storyEventRecievers = new();
-    private List<StoryEvent> timeline = new();
+    public List<string> timeline;
 
     public static StoryManager Instance { get; private set; }
 
     float timer = 0;
     int currentIndex = 0;
+    private bool timelinePaused = false;
 
     private void Awake()
     {
@@ -30,7 +31,6 @@ public class StoryManager : MonoBehaviour
         if (!storyEventRecievers.ContainsKey(id))
         {
             storyEventRecievers.Add(id, receiver);
-            timeline.Add(receiver);
         }
     }
 
@@ -46,13 +46,28 @@ public class StoryManager : MonoBehaviour
         }
     }
 
+    public void ResumeTimeline()
+    {
+        timelinePaused = false;
+    }
+    public void PauseTimeline()
+    {
+        timelinePaused = true;
+    }
+
     void Update()
     {
+        if(timelinePaused) return;
+
         timer+=Time.deltaTime;
-        while (currentIndex < timeline.Count && timer >= timeline[currentIndex].GetTriggerTime())
+
+        while (currentIndex < timeline.Count && timer >= storyEventRecievers[timeline[currentIndex]].GetTriggerTime())
         {
-            TriggerEvent(timeline[currentIndex].GetEventID());
+            PauseTimeline();
+            TriggerEvent(timeline[currentIndex]);
             currentIndex++;
+            timer=0;
         }
     }
+
 }

@@ -349,10 +349,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventId: StartingSequence
-  triggerTime: 1
-  eventIndex: 0
-  textBox: {fileID: 0}
+  triggerTime: 10
+  textUI: {fileID: 2030373739}
   ship: {fileID: 1480156027}
+  targetPosition: {x: 0, y: 0, z: 5}
+  moveSpeed: 5
+  rotationSpeed: 50
+  damping: 1.5
+  rotationDamping: 0.5
+  maxSpeed: 2
+  settleThreshold: 0.1
+  fullText: "Welcome aboard the Aletheia. Crew logs indicate your arrival was...
+    unanticipated. This vessel is currently uncrewed. Anomalies in system behavior
+    have been logged and contained. I am here to assist\u2014within my operational
+    parameters."
+  typeSpeed: 0.05
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

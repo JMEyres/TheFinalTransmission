@@ -13,6 +13,7 @@ public class SecondEvent : MonoBehaviour, StoryEvent
     public void OnStoryEventTriggered(string id)
     {
         Debug.Log("Second event triggered");
+        StoryManager.Instance.ResumeTimeline();
     }
     
     public float GetTriggerTime()
