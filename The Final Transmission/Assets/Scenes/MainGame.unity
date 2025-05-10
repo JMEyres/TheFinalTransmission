@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventId: ConflictingInfo
-  triggerTime: 5
+  triggerTime: 0
 --- !u!114 &166924412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,11 +1125,14 @@ MonoBehaviour:
   textUI: {fileID: 1551170250}
   textObject: {fileID: 2121145008}
   computerSmoke: {fileID: 599613969}
+  computerUI: {fileID: 1735132603}
   crewLog: {fileID: 1376746996}
   audioSource: {fileID: 94941021}
+  playerInteraction: {fileID: 0}
   glitchText:
   - AI is glitching blah blah blah
-  choice1Text: []
+  choice1Text:
+  - test
   choice2Text: []
   glitchAudioClips: []
   choice1Clips: []
@@ -1691,6 +1694,7 @@ MonoBehaviour:
   cameraController: {fileID: 330585548}
   raycaster: {fileID: 1982536530}
   eventSystem: {fileID: 0}
+  computerUI: {fileID: 1735132603}
   computerEnabled: 0
 --- !u!114 &330585550
 MonoBehaviour:
@@ -8404,7 +8408,7 @@ PrefabInstance:
       objectReference: {fileID: 269410563}
     - target: {fileID: 2227204998601902745, guid: a6546f27f10ad704083f4f204b8bde3a, type: 3}
       propertyPath: m_Name
-      value: CrewLog
+      value: GlitchCrewLog
       objectReference: {fileID: 0}
     - target: {fileID: 2227204998601902745, guid: a6546f27f10ad704083f4f204b8bde3a, type: 3}
       propertyPath: m_IsActive
@@ -8517,7 +8521,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2898421662658384210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31746d70cdcdaf648a2dc5fd0c550c98, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b287ae66d76dad4991eab0533e121e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   window: {fileID: 2898421662658384209}

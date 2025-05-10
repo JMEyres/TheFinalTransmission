@@ -7,8 +7,9 @@ public class CrewLog : MonoBehaviour
     public TextMeshProUGUI logObject;
     [TextArea] public string title; 
     [TextArea] public string log; 
-
     [SerializeField] IconController iconController;
+
+    private bool triggeredEvent = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,6 +24,7 @@ public class CrewLog : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.X)) 
         {
             gameObject.SetActive(false);
+            if(gameObject.name == "IncriminatingCrewLog" && !triggeredEvent) { StoryManager.Instance.TriggerEvent("ConflictingInfo"); triggeredEvent = true; }
             iconController.OnObjectToggled();
         }
 

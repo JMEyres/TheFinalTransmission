@@ -7,8 +7,10 @@ public class AiGlitch : BaseStoryEvent
     [SerializeField] private TextMeshProUGUI textUI;
     [SerializeField] private GameObject textObject;
     [SerializeField] private GameObject computerSmoke;
+    [SerializeField] private GameObject computerUI;
     [SerializeField] private GameObject crewLog;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private PlayerInteraction playerInteraction;
     [TextArea] public List<string> glitchText, choice1Text, choice2Text;
     [TextArea] public List<AudioClip> glitchAudioClips, choice1Clips, choice2Clips;
     private List<string> currentText;
@@ -28,17 +30,21 @@ public class AiGlitch : BaseStoryEvent
             if(Input.GetKeyDown(KeyCode.Return) || endEvent)
             {
                 textObject.SetActive(false);
+                computerSmoke.SetActive(false);
                 isTyping = false;
                 audioSource.Stop();
                 audioPlayed = true;
                 choiceMade = true;
                 StoryManager.Instance.ResumeTimeline();
+                if(endAfterTyping) StoryManager.Instance.TriggerEvent("ConflictingInfo");
                 triggered = false;
                 return;
             }
 
             if (!glitchAudioPlayed) 
             {
+                computerUI.SetActive(false);
+                computerSmoke.SetActive(true);
                 audioSource.Play();
                 currentText = glitchText;
                 currentClips = glitchAudioClips;
@@ -89,15 +95,18 @@ public class AiGlitch : BaseStoryEvent
                     { 
                         SetAiText(choice1Text, choice1Clips); 
                         StoryManager.Instance.AiRep(5);
+                        StoryManager.Instance.savedChoice = "Question";
                         endAfterTyping = true;
                     } 
                     if(Input.GetKeyDown(KeyCode.Alpha2)) // Ignore AI
                     { 
                         StoryManager.Instance.AiRep(-5);
+                        StoryManager.Instance.savedChoice = "Ignore";
                         crewLog.SetActive(true); // need to make it so when player closes log it resumes timeline
+                        endEvent = true;
                     } 
 
-                    // need to log choice made in story manager as it impacts next story event
+                    // need to log choice made in story manager as it impacts next story event - should be able to really botch this as its the only choice that specifically needs to be remembered
                 }
             }
         }

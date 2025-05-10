@@ -11,7 +11,6 @@ public class Computer : MonoBehaviour, Interactable
         computerScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         cameraController.lockCamera = true;
-        playerInteraction.computerEnabled = true;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,7 +23,6 @@ public class Computer : MonoBehaviour, Interactable
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            playerInteraction.computerEnabled = false;
             computerScreen.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             cameraController.lockCamera = false;

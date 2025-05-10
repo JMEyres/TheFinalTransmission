@@ -11,6 +11,8 @@ public class StoryManager : MonoBehaviour
 
     public static StoryManager Instance { get; private set; }
 
+    public string savedChoice = "";
+
     float timer = 0;
     int currentIndex = 0;
     private bool timelinePaused = false;

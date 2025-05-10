@@ -9,6 +9,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private CameraController cameraController;
     [SerializeField] private GraphicRaycaster raycaster;
     [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private GameObject computerUI;
     private Interactable currentInteractable;
     public bool computerEnabled = false;
 
@@ -19,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        computerEnabled = computerUI.activeInHierarchy;
         if(!computerEnabled)
         {
             if(Input.GetMouseButtonDown(0))
