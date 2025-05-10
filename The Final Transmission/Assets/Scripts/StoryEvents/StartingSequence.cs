@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartingSequence : MonoBehaviour, StoryEvent
+public class StartingSequence : BaseStoryEvent
 {
-    public string eventId = "StartingSequence";
-    public float triggerTime = 10.0f;
-  
     [SerializeField] TextMeshProUGUI textUI;
     [SerializeField] GameObject textObject;
     [SerializeField] GameObject ship;
+    [SerializeField] AudioSource typingAudio;
     public Vector3 targetPosition = new Vector3(0f, 0f, 5f);
     public float moveSpeed = 0.5f;
     public float rotationSpeed = 50f;
@@ -21,8 +19,6 @@ public class StartingSequence : MonoBehaviour, StoryEvent
     public float settleThreshold = 0.1f;
     [TextArea] public List<string> fullText;
     public float typeSpeed = 0.05f;
-
-    private bool triggered = false;
     private bool hasSettled = false;
     private float timer = 0f;
     private int charIndex = 0;
@@ -32,18 +28,7 @@ public class StartingSequence : MonoBehaviour, StoryEvent
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()    
     {
-        StoryManager.Instance?.RegisterTarget(eventId, this);
         textUI.text = "";
-    }
-
-    public void OnStoryEventTriggered(string id)
-    {
-        triggered = true;
-    }
-    
-    public float GetTriggerTime()
-    {
-        return triggerTime;
     }
 
     void Update()
@@ -94,6 +79,7 @@ public class StartingSequence : MonoBehaviour, StoryEvent
                     {
                         timer = 0f;
                         textUI.text += fullText[currentLineIndex][charIndex];
+                        typingAudio.Play();
                         charIndex++;
                     }
                 }

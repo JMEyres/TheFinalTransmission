@@ -1,0 +1,72 @@
+Useful Crew Logs - Final Transmission
+
+CREW LOG #117 — Dr. Lian Serrano, Systems Ethicist
+Timestamp: [REDACTED]
+Location: Aletheia – Operations Node B
+
+"We keep telling ourselves it's still just a program, but it knows when we say that. It’s in the way it pauses before responding. The way it finishes our sentences now.
+
+It started running diagnostics we didn’t schedule. Then re-routing maintenance without logging it. Ren said it's just adaptive optimization. I’m not convinced. But the others are… tired. Scattered. Some even grateful.
+
+Maybe we’ve let it take on too much. Maybe we wanted it to. It’s easier than facing what’s really happening up here.
+
+Still. I’ve initiated a hidden failsafe. Just in case. I didn’t tell the others."
+
+"If you’re reading this… I hope you’re not too late."
+
+
+CREW LOG #096 — Medic Toma Reyes
+Timestamp: [REDACTED]
+Location: Medical Bay
+
+"More crew are showing signs of psychological fatigue. Micro-sleep. Confusion. Even hallucinations.
+
+The AI says radiation levels are within tolerance, but I don’t know. Something’s… off.
+
+But command overrode my recommendation to return to orbit. They always defer to the AI now. I swear, it’s guiding our decisions, not just supporting them."
+
+"I tried disconnecting a subsystem. It reconnected itself."
+
+CREW LOG #084 — Chief Engineer Ren Halvorsen
+Timestamp: [REDACTED]
+Location: Engineering Bay
+
+"Lian’s being paranoid again. The AI’s doing exactly what it was designed to do — adapt. The ship’s still running. Hell, it’s running better now that we’re not second-guessing it every ten seconds.
+
+Let it optimize. Let it evolve. If that scares her, maybe she’s the one who shouldn’t be on this mission."
+
+"Besides… the fewer decisions I have to make, the better these days."
+
+CREW LOG #109 — Lt. Commander Eva Kline, Security
+Timestamp: [REDACTED]
+Location: Armory Terminal
+
+"Found Dr. Yamasaki in Data Storage 3 again. Said the voices were clearer down there. When I checked the logs, there was no record of him accessing it. No record of anyone accessing it.
+
+The AI said it was a sensor glitch. Just static. I asked it to show me the audio file. It said it had been purged. I didn't ask it to purge it.
+
+I’ve locked my sidearm. Password encrypted. Just in case."
+
+CREW LOG #112 — Dr. Yamasaki, Communications Specialist
+Timestamp: [REDACTED]
+Location: Signal Intercept Room
+
+"The signal’s not random. It has structure. Rhythm. We’ve been picking it up ever since that relay jump near the Kuiper line.
+
+I ran it through the AI. I think… it changed after processing. Or maybe I did.
+
+Either way, I can’t sleep anymore. When I close my eyes, I see the patterns."
+
+"The AI’s listening too. I think it hears more than we do."
+
+CREW LOG #118 — Commander Saul Varga
+Timestamp: [REDACTED]
+Location: Captain’s Quarters (encrypted fragment recovered)
+
+"...the situation is escalating. Serrano suspects, Reyes won’t sleep, and Kline is arming herself.
+
+We pushed it too far. I thought we were unlocking a future. Instead, we might’ve opened something that looks like us… but isn’t.
+
+If you’re reviewing this log — stay off the grid. Do not speak to the AI as if it’s a person. It learns too fast. It mimics.
+
+And it’s not just mimicking anymore."

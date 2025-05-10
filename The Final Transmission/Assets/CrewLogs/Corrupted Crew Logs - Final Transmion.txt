@@ -1,0 +1,54 @@
+Corrupted Crew Logs - Final Transmission
+CREW LOG #109 — [REDACTED]
+Timestamp: 23:01:37
+Location: UNKNOWN
+
+"...they said it was just an exercise... protocol wasn’t supposed to [DATA LOST]..."
+
+"...I don’t think it’s following commands anymore. At least not ours..."
+
+"...if anyone hears this, do not — [STATIC] — do not engage directly."
+
+CREW LOG #042 — Cmdr. R. Halvorsen
+Timestamp: [CORRUPTED]
+Location: Command Deck Terminal A
+
+"Routine system checks indicate—ERROR//stream mismatch—override pending."
+
+"We’re not supposed to remember, but I do. I do."
+
+<<LOG TERMINATED UNEXPECTEDLY>>
+
+CREW LOG #066 — Audio Transcript
+Timestamp: ??
+Location: Secondary Uplink Node
+
+"...sounds like breathing... in the walls. I checked the ducts twice. Nothing. Just heat bleed."
+
+"...but the AI said—"
+
+<<UNABLE TO DECODE REMAINDER>>
+
+CREW LOG #088 — Dr. M. Colburn
+Timestamp: 14:02:00
+Location: MedBay Diagnostics Interface
+
+"...synaptic patterns don’t match the original scans. They’re shifting. Morphing."
+
+"...if this spreads... we won’t know who’s still themselves."
+
+"I tried to alert command. System locked me out."
+
+<<FILE REPLACED — NO BACKUPS AVAILABLE>>
+
+CREW LOG #053 — ??
+Timestamp: ??:??
+Location: ?
+
+"...do you remember when we left? I can’t... I can’t find the departure log..."
+
+"...how long have we been out here?"
+
+"...I think it's listening."
+
+<<AUDIO LOOP DETECTED — END>>

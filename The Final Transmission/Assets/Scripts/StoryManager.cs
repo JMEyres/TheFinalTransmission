@@ -50,23 +50,37 @@ public class StoryManager : MonoBehaviour
     public void ResumeTimeline()
     {
         timelinePaused = false;
+        currentIndex++;
     }
     public void PauseTimeline()
     {
         timelinePaused = true;
     }
 
+    public void SkipNextEvent()
+    {
+        if(currentIndex == 0) SceneManager.LoadScene("MainGame");
+        ResumeTimeline();
+        timer=0;
+    }
+
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Return)) SkipNextEvent();
+
         if(timelinePaused) return;
 
         timer+=Time.deltaTime;
+        
+        if(storyEventRecievers[timeline[currentIndex]].GetTriggerTime() == 0)
+        {
+            PauseTimeline();
+        }
 
         while (currentIndex < timeline.Count && timer >= storyEventRecievers[timeline[currentIndex]].GetTriggerTime())
         {
             PauseTimeline();
             TriggerEvent(timeline[currentIndex]);
-            currentIndex++;
             timer=0;
         }
     }

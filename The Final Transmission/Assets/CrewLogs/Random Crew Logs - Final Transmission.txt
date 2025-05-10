@@ -1,0 +1,43 @@
+Random Crew Logs - Final Transmission
+
+CREW LOG #037 — Logistics Officer Mei Tran
+Timestamp: 03:12:19
+Location: Cargo Bay 1
+
+"Who keeps leaving their tools on crate 27B? I’ve asked twice already — if you lose gear, it doesn't grow legs and walk off. Tag it or lose it. Simple."
+
+"Also, reminder: the lift calibration is off by 0.04 degrees again. Filing another maintenance request."
+
+CREW LOG #051 — Chef Omar Patel
+Timestamp: 12:47:53
+Location: Galley Terminal
+
+"Inventory says we’re out of hydroponic basil again. That’s the third time this week.
+
+I’m not saying someone’s hoarding it, but whoever keeps adding it to the protein trays like it’s seasoning — stop. You’re ruining the ratios."
+
+"Also, today’s morale meal: mock-chicken teriyaki. Enjoy."
+
+CREW LOG #072 — Ensign Lira N’Kosi
+Timestamp: 20:22:01
+Location: Observation Deck
+
+"Watched Jupiter crest the edge of the viewport today. Still blows my mind, even after all these jumps.
+
+Feels like the ship hums quieter during these moments. Or maybe that’s just me."
+
+CREW LOG #058 — Systems Tech Bryce Eldin
+Timestamp: 09:00:00
+Location: Subdeck Maintenance Panel 3
+
+"Ran diagnostics on the sanitation loop. Again. It’s within spec but the smell’s still off. Filter degradation, maybe.
+
+Also noticed a power dip on Subdeck C. Not critical, but logging it for reference."
+
+CREW LOG #081 — Botanist Hyejin Park
+Timestamp: 15:34:42
+Location: Arboretum Terminal
+
+"The moss sample from Habitat Pod 6 is reacting to light differently than expected. Nothing dramatic — just a slower curve on photosensitivity.
+
+Might be worth adjusting the cycle next week. Also, someone overwatered the peace lilies again."
