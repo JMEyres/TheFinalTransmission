@@ -1,34 +1,64 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private CameraController cameraController;
+    [SerializeField] private GraphicRaycaster raycaster;
+    [SerializeField] private EventSystem eventSystem;
     private Interactable currentInteractable;
+    public bool computerEnabled = false;
 
+    void Awake()
+    {
+        eventSystem = EventSystem.current;
+    }
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(!computerEnabled)
         {
-            if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, interactableLayer))
+            if(Input.GetMouseButtonDown(0))
             {
-                Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
-                if(hitInfo.collider.TryGetComponent<Interactable>(out Interactable hitInteractable))
+                if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, interactableLayer))
                 {
-                    cameraController.lockCamera = true;
-                    currentInteractable = hitInteractable;
-                    currentInteractable.Interact();
+                    Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
+                    if(hitInfo.collider.TryGetComponent<Interactable>(out Interactable hitInteractable))
+                    {
+                        currentInteractable = hitInteractable;
+                        currentInteractable.Interact();
+                    }
                 }
             }
+
+            if(Input.GetMouseButtonUp(0))
+            {
+                currentInteractable = null;
+            }
         }
-
-        if(Input.GetMouseButtonUp(0))
+        else
         {
-            currentInteractable = null;
-            cameraController.lockCamera = false;
+            if (Input.GetMouseButtonDown(0))
+            {
+                PointerEventData pointerData = new PointerEventData(eventSystem);
+                pointerData.position = Input.mousePosition;
 
+                List<RaycastResult> results = new List<RaycastResult>();
+                raycaster.Raycast(pointerData, results);
+
+                foreach (RaycastResult result in results)
+                {
+                     if (result.gameObject.TryGetComponent<Interactable>(out Interactable interactable))
+                    {
+                        currentInteractable = interactable;
+                        currentInteractable.Interact();
+                        break; // Stop at first valid result
+                    }
+                }
+            }
         }
     }
 }

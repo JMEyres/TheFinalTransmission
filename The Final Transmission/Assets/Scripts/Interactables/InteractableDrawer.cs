@@ -7,11 +7,16 @@ public class InteractableDrawer : MonoBehaviour, Interactable
     public Transform drawer;
     private bool isDragging = false;
     private Vector3 startingPos;
+    [SerializeField] private CameraController cameraController;
+
+    void Awake()
+    {
+        startingPos = drawer.localPosition;
+    }
 
     public void Interact()
     {
         isDragging = true;
-        startingPos = drawer.localPosition;
     }
 
     void Update()
@@ -20,6 +25,8 @@ public class InteractableDrawer : MonoBehaviour, Interactable
         {
             if(Input.GetMouseButton(0))
             {
+                cameraController.lockCamera = true;
+
                 float deltaX = Input.GetAxis("Mouse X");
                 float deltaY = Input.GetAxis("Mouse Y");
 
@@ -32,6 +39,7 @@ public class InteractableDrawer : MonoBehaviour, Interactable
             else
             {
                 isDragging = false;
+                cameraController.lockCamera = false;
             }
         }
     }

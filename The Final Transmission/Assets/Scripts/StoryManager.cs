@@ -15,6 +15,8 @@ public class StoryManager : MonoBehaviour
     int currentIndex = 0;
     private bool timelinePaused = false;
 
+    private int AiReputation = 50;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -37,6 +39,11 @@ public class StoryManager : MonoBehaviour
 
     public void TriggerEvent(string id)
     {
+        if (timeline[currentIndex] != id)
+        {
+            Debug.Log($"Event '{id}' is not the current expected event in the timeline.");
+            return;
+        }
         if (storyEventRecievers.TryGetValue(id, out var receiver))
         {
             receiver.OnStoryEventTriggered(id);
@@ -56,32 +63,35 @@ public class StoryManager : MonoBehaviour
     {
         timelinePaused = true;
     }
-
-    public void SkipNextEvent()
+    
+    public void AiRep(int rep)
     {
-        if(currentIndex == 0) SceneManager.LoadScene("MainGame");
-        ResumeTimeline();
-        timer=0;
+        if(AiReputation + rep <= 100 && AiReputation + rep >= 0) AiReputation += rep;
+        else if(AiReputation + rep > 100) AiReputation = 100;
+        else if(AiReputation + rep < 0) AiReputation = 0;
+        Debug.Log(AiReputation);
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return)) SkipNextEvent();
-
         if(timelinePaused) return;
 
         timer+=Time.deltaTime;
         
-        if(storyEventRecievers[timeline[currentIndex]].GetTriggerTime() == 0)
+        float triggerTime = storyEventRecievers[timeline[currentIndex]].GetTriggerTime();
+
+        if (triggerTime == 0f)
         {
+            // Manual trigger point: pause the timeline and wait for external trigger
             PauseTimeline();
+            return;
         }
 
-        while (currentIndex < timeline.Count && timer >= storyEventRecievers[timeline[currentIndex]].GetTriggerTime())
+        if (timer >= triggerTime)
         {
             PauseTimeline();
             TriggerEvent(timeline[currentIndex]);
-            timer=0;
+            timer = 0f;
         }
     }
 

@@ -5,9 +5,9 @@ using System;
 
 public class AiIntro : BaseStoryEvent
 {
-    [SerializeField] TextMeshProUGUI textUI;
-    [SerializeField] GameObject textObject;
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] private TextMeshProUGUI textUI;
+    [SerializeField] private GameObject textObject;
+    [SerializeField] private AudioSource audioSource;
     private List<string> currentText;
     [TextArea] public List<string> introText, choice1Text, choice2Text, choice3Text, probeChoice1Text, probeChoice2Text;
     private List<AudioClip> currentClips;
@@ -17,19 +17,31 @@ public class AiIntro : BaseStoryEvent
     private int charIndex = 0;
     private int currentLineIndex = 0;
     private bool isTyping = true;
-    private bool lineCompleted, audioPlayed, choiceMade, probeAI, endEvent = false;
+    private bool lineCompleted, audioPlayed, choiceMade, probeAI, endEvent, endAfterTyping = false;
     void Start()
     {
         textUI.text = "";
         currentText = introText;
         currentClips = introClips;
-        audioSource.playOnAwake = false;
     }
     // Update is called once per frame
     void Update()
     {
         if(triggered)
         {
+            if(Input.GetKeyDown(KeyCode.Return) || endEvent)
+            {
+                textObject.SetActive(false);
+                isTyping = false;
+                audioSource.Stop();
+                audioPlayed = true;
+                choiceMade = true;
+                textUI.text = "";
+                StoryManager.Instance.ResumeTimeline();
+                triggered = false;
+                return;
+            }
+
             if (isTyping)
             {
                 textObject.SetActive(true);
@@ -63,31 +75,49 @@ public class AiIntro : BaseStoryEvent
             }
             else
             {
-                if(endEvent) 
-                {
-                    textObject.SetActive(false);
-                    isTyping = false;
-                    StoryManager.Instance.ResumeTimeline();
-                    triggered = false;
-                }
                 if(!choiceMade)
                 {
                     textObject.SetActive(true);
 
-                    if(probeAI) textUI.text = "Choices 1,2";
-                    else textUI.text = "Choices 1,2,3";
+                    if(probeAI) textUI.text = "1. Let’s not get lost in speculation. I just want to understand what’s needed now. \n2. You’re avoiding something. What really happened to the crew?";
+                    else textUI.text = "1. That’s… a lot to process. But I believe you. \n2. I’ll figure things out on my own. \n3. That’s a convenient version of events. What aren’t you telling me?";
                 }
                 
                 if(probeAI)
                 {
-                    if(Input.GetKeyDown(KeyCode.Alpha1)) { Debug.Log("Choice 1"); SetAiText(probeChoice1Text, probeChoice1Clips); endEvent = true; }
-                    if(Input.GetKeyDown(KeyCode.Alpha2)) { Debug.Log("Choice 2"); SetAiText(probeChoice2Text, probeChoice2Clips); endEvent = true; } 
+                    if(Input.GetKeyDown(KeyCode.Alpha1)) 
+                    { 
+                        SetAiText(probeChoice1Text, probeChoice1Clips); 
+                        endAfterTyping = true; 
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha2)) 
+                    { 
+                        SetAiText(probeChoice2Text, probeChoice2Clips);
+                        StoryManager.Instance.AiRep(-10);
+                        endAfterTyping = true;
+                    } 
                 }
                 else
                 {
-                    if(Input.GetKeyDown(KeyCode.Alpha1)) { Debug.Log("Choice 1"); SetAiText(choice1Text, choice1Clips); endEvent = true; } // Take AI Word
-                    if(Input.GetKeyDown(KeyCode.Alpha2)) { Debug.Log("Choice 2"); SetAiText(choice2Text, choice2Clips); endEvent = true; } // Ignore AI
-                    if(Input.GetKeyDown(KeyCode.Alpha3)) { Debug.Log("Choice 3"); SetAiText(choice3Text, choice3Clips); probeAI = true; choiceMade = false;} // Probe AI
+                    if(Input.GetKeyDown(KeyCode.Alpha1)) // Take AI Word
+                    { 
+                        SetAiText(choice1Text, choice1Clips); 
+                        StoryManager.Instance.AiRep(5);
+                        endAfterTyping = true;
+                    } 
+                    if(Input.GetKeyDown(KeyCode.Alpha2)) // Ignore AI
+                    { 
+                        SetAiText(choice2Text, choice2Clips); 
+                        StoryManager.Instance.AiRep(-5);
+                        endAfterTyping = true; 
+                    } 
+                    if(Input.GetKeyDown(KeyCode.Alpha3)) // Probe AI
+                    { 
+                        SetAiText(choice3Text, choice3Clips); 
+                        probeAI = true; 
+                        StoryManager.Instance.AiRep(-10);
+                        choiceMade = false;
+                    } 
                 }
             }
         }
@@ -109,6 +139,7 @@ public class AiIntro : BaseStoryEvent
             textObject.SetActive(false);
             isTyping = false;
             currentLineIndex = 0;
+            if(endAfterTyping) endEvent = true;
         }
     }
 

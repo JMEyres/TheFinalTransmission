@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class StartingSequence : BaseStoryEvent
 {
-    [SerializeField] TextMeshProUGUI textUI;
-    [SerializeField] GameObject textObject;
-    [SerializeField] GameObject ship;
-    [SerializeField] AudioSource typingAudio;
+    [SerializeField] private TextMeshProUGUI textUI;
+    [SerializeField] private GameObject textObject;
+    [SerializeField] private GameObject ship;
+    [SerializeField] private AudioSource typingAudio;
     public Vector3 targetPosition = new Vector3(0f, 0f, 5f);
     public float moveSpeed = 0.5f;
     public float rotationSpeed = 50f;
@@ -24,7 +24,7 @@ public class StartingSequence : BaseStoryEvent
     private int charIndex = 0;
     private int currentLineIndex = 0;
     private bool isTyping = true;
-    private bool lineCompleted = false;
+    private bool lineCompleted, endEvent = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()    
     {
@@ -35,6 +35,15 @@ public class StartingSequence : BaseStoryEvent
     {
         if(triggered)
         {
+            if(Input.GetKeyDown(KeyCode.Return) || endEvent)
+            {
+                textObject.SetActive(false);
+                isTyping = false;
+                StoryManager.Instance.ResumeTimeline();
+                triggered = false;
+                SceneManager.LoadScene("MainGame");
+                return;
+            }
             if(!hasSettled) 
             {
                 // Distance to target
@@ -103,11 +112,7 @@ public class StartingSequence : BaseStoryEvent
         }
         else
         {
-            textObject.SetActive(false);
-            isTyping = false;
-            StoryManager.Instance.ResumeTimeline();
-            triggered = false;
-            SceneManager.LoadScene("MainGame");
+            endEvent = true;
         }
     }
 }
