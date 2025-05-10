@@ -25,6 +25,7 @@ public class StoryManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        Cursor.lockState = CursorLockMode.Locked;
     }
     public void RegisterTarget(string id, StoryEvent receiver)
     {

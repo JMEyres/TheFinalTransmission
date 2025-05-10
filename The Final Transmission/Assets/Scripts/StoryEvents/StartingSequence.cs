@@ -1,6 +1,8 @@
 using TMPro;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartingSequence : MonoBehaviour, StoryEvent
 {
@@ -8,10 +10,8 @@ public class StartingSequence : MonoBehaviour, StoryEvent
     public float triggerTime = 10.0f;
   
     [SerializeField] TextMeshProUGUI textUI;
+    [SerializeField] GameObject textObject;
     [SerializeField] GameObject ship;
-
-    private bool triggered = false;
-
     public Vector3 targetPosition = new Vector3(0f, 0f, 5f);
     public float moveSpeed = 0.5f;
     public float rotationSpeed = 50f;
@@ -19,14 +19,16 @@ public class StartingSequence : MonoBehaviour, StoryEvent
     public float rotationDamping = 0.5f;
     public float maxSpeed = 2.0f;
     public float settleThreshold = 0.1f;
-
-    private bool hasSettled = false;
-    [TextArea] public string fullText;
+    [TextArea] public List<string> fullText;
     public float typeSpeed = 0.05f;
 
+    private bool triggered = false;
+    private bool hasSettled = false;
     private float timer = 0f;
     private int charIndex = 0;
+    private int currentLineIndex = 0;
     private bool isTyping = true;
+    private bool lineCompleted = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()    
     {
@@ -50,10 +52,6 @@ public class StartingSequence : MonoBehaviour, StoryEvent
         {
             if(!hasSettled) 
             {
-                //StoryManager.Instance.ResumeTimeline();
-                //triggered = false;
-            
-
                 // Distance to target
                 float distance = Vector3.Distance(ship.transform.position, targetPosition);
 
@@ -84,18 +82,46 @@ public class StartingSequence : MonoBehaviour, StoryEvent
 
             else
             {
-                if (!isTyping || charIndex >= fullText.Length)
-                return;
+                textObject.SetActive(true);
+                if (!isTyping || currentLineIndex >= fullText.Count)
+                    return;
 
-                timer += Time.deltaTime;
-
-                if (timer >= typeSpeed)
+                if (charIndex < fullText[currentLineIndex].Length)
                 {
-                    timer = 0f;
-                    textUI.text += fullText[charIndex];
-                    charIndex++;
-                }        
+                    timer += Time.deltaTime;
+
+                    if (timer >= typeSpeed)
+                    {
+                        timer = 0f;
+                        textUI.text += fullText[currentLineIndex][charIndex];
+                        charIndex++;
+                    }
+                }
+                else if (!lineCompleted)
+                {
+                    lineCompleted = true;
+                    Invoke("NextLine", 2.0f);
+                }
             }     
+        }
+    }
+
+    public void NextLine()
+    {
+        if (currentLineIndex < fullText.Count - 1)
+        {
+            currentLineIndex++;
+            charIndex = 0;
+            textUI.text = "";
+            lineCompleted = false;
+        }
+        else
+        {
+            textObject.SetActive(false);
+            isTyping = false;
+            StoryManager.Instance.ResumeTimeline();
+            triggered = false;
+            SceneManager.LoadScene("MainGame");
         }
     }
 }
