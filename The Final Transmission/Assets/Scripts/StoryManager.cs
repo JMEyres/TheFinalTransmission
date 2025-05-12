@@ -17,7 +17,8 @@ public class StoryManager : MonoBehaviour
     int currentIndex = 0;
     private bool timelinePaused = false;
 
-    private int AiReputation = 50;
+    public int AiReputation = 50;
+    public string currentEvent = "";
 
     private void Awake()
     {
@@ -49,6 +50,7 @@ public class StoryManager : MonoBehaviour
         if (storyEventRecievers.TryGetValue(id, out var receiver))
         {
             receiver.OnStoryEventTriggered(id);
+            currentEvent = id;
         }
         else
         {
