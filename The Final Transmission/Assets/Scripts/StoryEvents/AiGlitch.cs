@@ -44,6 +44,7 @@ public class AiGlitch : BaseStoryEvent
             if (!glitchAudioPlayed) 
             {
                 computerUI.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
                 computerSmoke.SetActive(true);
                 audioSource.Play();
                 currentText = glitchText;
@@ -89,7 +90,7 @@ public class AiGlitch : BaseStoryEvent
                     if(!choiceMade)
                     {
                         textObject.SetActive(true);
-                        textUI.text = "1. That’s… a lot to process. But I believe you. \n2. I’ll figure things out on my own. \n3. That’s a convenient version of events. What aren’t you telling me?";
+                        textUI.text = "1. I didn’t mean to pry. Let’s just move on. \n2. What exactly was I not supposed to see? ";
                     }
                     if(Input.GetKeyDown(KeyCode.Alpha1)) // Question AI
                     { 

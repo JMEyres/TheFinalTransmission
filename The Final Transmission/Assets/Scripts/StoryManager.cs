@@ -79,6 +79,11 @@ public class StoryManager : MonoBehaviour
         SceneManager.activeSceneChanged+=OnActiveSceneChanged;
     }
 
+    void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= OnActiveSceneChanged;
+    }
+
     void Update()
     {
         if(timelinePaused) return;
@@ -104,7 +109,10 @@ public class StoryManager : MonoBehaviour
 
     void OnActiveSceneChanged(Scene oldScene, Scene newScene)
     {
-        ResumeTimeline();
+        if (newScene.name == "MainGame")
+        {
+            ResumeTimeline();
+        }
     }
 
 }
