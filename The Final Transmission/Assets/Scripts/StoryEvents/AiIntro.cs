@@ -18,7 +18,7 @@ public class AiIntro : BaseStoryEvent
     private int currentLineIndex = 0;
     private bool isTyping = true;
     private bool lineCompleted, audioPlayed, choiceMade, probeAI, endEvent, endAfterTyping = false;
-    void Start()
+    void Awake()
     {
         textUI.text = "";
         currentText = introText;

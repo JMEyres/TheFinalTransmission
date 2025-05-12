@@ -74,6 +74,11 @@ public class StoryManager : MonoBehaviour
         Debug.Log(AiReputation);
     }
 
+    void OnEnable()
+    {
+        SceneManager.activeSceneChanged+=OnActiveSceneChanged;
+    }
+
     void Update()
     {
         if(timelinePaused) return;
@@ -95,6 +100,11 @@ public class StoryManager : MonoBehaviour
             TriggerEvent(timeline[currentIndex]);
             timer = 0f;
         }
+    }
+
+    void OnActiveSceneChanged(Scene oldScene, Scene newScene)
+    {
+        ResumeTimeline();
     }
 
 }

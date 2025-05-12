@@ -26,7 +26,7 @@ public class StartingSequence : BaseStoryEvent
     private bool isTyping = true;
     private bool lineCompleted, endEvent = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()    
+    void Awake()    
     {
         textUI.text = "";
     }
@@ -39,7 +39,7 @@ public class StartingSequence : BaseStoryEvent
             {
                 textObject.SetActive(false);
                 isTyping = false;
-                StoryManager.Instance.ResumeTimeline();
+                //StoryManager.Instance.ResumeTimeline();
                 triggered = false;
                 SceneManager.LoadScene("MainGame");
                 return;

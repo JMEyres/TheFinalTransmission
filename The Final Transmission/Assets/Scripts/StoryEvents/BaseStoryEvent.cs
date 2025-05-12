@@ -7,7 +7,7 @@ public class BaseStoryEvent : MonoBehaviour, StoryEvent
     protected bool triggered = false;
   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected void Awake()    
+    protected void Start()    
     {
         StoryManager.Instance?.RegisterTarget(eventId, this);
     }
