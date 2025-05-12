@@ -14,7 +14,7 @@ public class StoryManager : MonoBehaviour
     public string savedChoice = "";
 
     float timer = 0;
-    int currentIndex = 0;
+    public int currentIndex = 0;
     private bool timelinePaused = false;
 
     public int AiReputation = 50;

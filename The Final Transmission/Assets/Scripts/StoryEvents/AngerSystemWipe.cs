@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class AngerSystemWipe : BaseStoryEvent
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
-    {
-        
-    }
+    // Want this to be a minigame, maybe a QTE to stop the AI deleting files
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(triggered)
+        {
+            Debug.Log("Triggered Anger System Wipe Event");
+        }
     }
 }

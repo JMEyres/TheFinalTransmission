@@ -6,6 +6,7 @@ public class ComputerTurnsOn : BaseStoryEvent
 {
     [SerializeField] private GameObject computerScreenOff;
     [SerializeField] private GameObject computerScreenOn;
+    [SerializeField] private GlitchLogTrigger glitchLogTrigger;
     [SerializeField] private MeshRenderer screenMesh;
     public float flickerOnSpeed = 0.1f;
     public float flickerOffSpeed = 0.1f;
@@ -25,6 +26,8 @@ public class ComputerTurnsOn : BaseStoryEvent
                 screenMesh.material.color = Color.white;
                 screenOn = true;
                 StoryManager.Instance.ResumeTimeline();
+                StoryManager.Instance.TriggerEvent("AiGlitch");
+                glitchLogTrigger.triggeredEvent = true;
                 triggered = false;
                 return;
             }

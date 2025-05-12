@@ -175,6 +175,9 @@ MonoBehaviour:
   - DistantSounds
   - ClosingInfo
   - FinalTransmission
+  savedChoice: 
+  AiReputation: 50
+  currentEvent: 
 --- !u!1 &1912910044
 GameObject:
   m_ObjectHideFlags: 0

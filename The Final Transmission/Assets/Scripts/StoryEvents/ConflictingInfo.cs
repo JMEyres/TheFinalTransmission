@@ -13,7 +13,7 @@ public class ConflictingInfo : BaseStoryEvent
         {
             if(Input.GetKeyDown(KeyCode.Return))
             {
-                StoryManager.Instance.TriggerEvent("Explosions");
+                StoryManager.Instance.ResumeTimeline();
                 logClose.triggeredEvent = true;
             }
 

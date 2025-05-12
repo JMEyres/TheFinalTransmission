@@ -38,6 +38,7 @@ public class AiGlitch : BaseStoryEvent
                 audioPlayed = true;
                 choiceMade = true;
                 StoryManager.Instance.ResumeTimeline();
+                StoryManager.Instance.savedChoice = "Ignore";
                 StoryManager.Instance.TriggerEvent("ConflictingInfo");
                 triggered = false;
                 return;
