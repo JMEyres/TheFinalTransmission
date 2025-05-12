@@ -18,15 +18,9 @@ public class CrewLog : MonoBehaviour
         iconController.OnObjectToggled();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateLog(string newTitle, string newLog)
     {
-        if(Input.GetKeyDown(KeyCode.X)) 
-        {
-            gameObject.SetActive(false);
-            if(gameObject.name == "IncriminatingCrewLog" && !triggeredEvent) { StoryManager.Instance.TriggerEvent("ConflictingInfo"); triggeredEvent = true; }
-            iconController.OnObjectToggled();
-        }
-
+        titleObject.text = newTitle;
+        logObject.text = newLog;
     }
 }

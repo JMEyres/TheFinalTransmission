@@ -38,7 +38,8 @@ public class CameraController : MonoBehaviour
         yaw += mouseX;
         pitch -= mouseY;
 
-        yaw = Mathf.Clamp(yaw, chair.transform.eulerAngles.y - 100f, chair.transform.eulerAngles.y + 100f); // has an issue when it gets to 360 degrees rotation where it jumps
+        //yaw = Mathf.Clamp(yaw, chair.transform.eulerAngles.y - 100f, chair.transform.eulerAngles.y + 100f); // has an issue when it gets to 360 degrees rotation where it jumps
+        yaw = Mathf.Clamp(yaw, -100f, 100f);
         pitch = Mathf.Clamp(pitch, -60f, 80f);
 
         transform.rotation = Quaternion.Euler(pitch, initialYaw + yaw, 0f);

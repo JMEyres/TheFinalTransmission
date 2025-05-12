@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class Explosions : BaseStoryEvent
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        
+        if(triggered)
+        {
+            Debug.Log("Triggered Explosions");
+        }
     }
 }

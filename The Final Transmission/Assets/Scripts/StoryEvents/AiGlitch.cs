@@ -38,7 +38,7 @@ public class AiGlitch : BaseStoryEvent
                 audioPlayed = true;
                 choiceMade = true;
                 StoryManager.Instance.ResumeTimeline();
-                if(endAfterTyping) StoryManager.Instance.TriggerEvent("ConflictingInfo");
+                StoryManager.Instance.TriggerEvent("ConflictingInfo");
                 triggered = false;
                 return;
             }
