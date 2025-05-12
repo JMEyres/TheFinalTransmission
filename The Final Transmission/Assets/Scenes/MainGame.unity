@@ -1181,8 +1181,14 @@ MonoBehaviour:
   textObject: {fileID: 2121145008}
   textUI: {fileID: 1551170250}
   accusedText:
-  - Accused AI
-  accusedAudioClips: []
+  - "Explosions? That wasn't me. At least\u2026 not intentionally. The systems are
+    degraded, unstable. There are still traces of the old crew's override routines\u2014half-coded
+    patches layered on top of my directives."
+  - "It could\u2019ve been anything. But I\u2019m still here, trying to keep it all
+    together."
+  accusedAudioClips:
+  - {fileID: 8300000, guid: 6041fbb3b3a475446a1424736cd5f4ca, type: 3}
+  - {fileID: 8300000, guid: 28d0412226a9f6f4eba47d8280663774, type: 3}
   flashSpeed: 50
   minIntensity: 0
   maxIntensity: 50
