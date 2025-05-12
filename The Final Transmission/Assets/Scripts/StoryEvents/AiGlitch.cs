@@ -9,8 +9,9 @@ public class AiGlitch : BaseStoryEvent
     [SerializeField] private GameObject computerSmoke;
     [SerializeField] private GameObject computerUI;
     [SerializeField] private GameObject crewLog;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource glitchAudioSource, textAudioSource;
     [SerializeField] private PlayerInteraction playerInteraction;
+    [SerializeField] private CameraController cameraController;
     [TextArea] public List<string> glitchText, choice1Text, choice2Text;
     [TextArea] public List<AudioClip> glitchAudioClips, choice1Clips, choice2Clips;
     private List<string> currentText;
@@ -32,7 +33,8 @@ public class AiGlitch : BaseStoryEvent
                 textObject.SetActive(false);
                 computerSmoke.SetActive(false);
                 isTyping = false;
-                audioSource.Stop();
+                glitchAudioSource.Stop();
+                textAudioSource.Stop();
                 audioPlayed = true;
                 choiceMade = true;
                 StoryManager.Instance.ResumeTimeline();
@@ -45,28 +47,29 @@ public class AiGlitch : BaseStoryEvent
             {
                 computerUI.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
+                cameraController.lockCamera = false;
                 computerSmoke.SetActive(true);
-                audioSource.Play();
+                glitchAudioSource.Play();
                 currentText = glitchText;
                 currentClips = glitchAudioClips;
                 glitchAudioPlayed = true;
             }
 
-            else if(glitchAudioPlayed && !audioSource.isPlaying)
+            else if(glitchAudioPlayed && !glitchAudioSource.isPlaying)
             {
                 if (isTyping)
                 {
                     textObject.SetActive(true);
                     if(currentLineIndex == 0 && currentClips.Count != 0)
                     {
-                        audioSource.resource=currentClips[currentLineIndex];
+                        textAudioSource.resource=currentClips[currentLineIndex];
                     }
 
                     if (charIndex < currentText[currentLineIndex].Length)
                     {
                         if(!audioPlayed && currentClips.Count != 0) 
                         {
-                            audioSource.Play();
+                            textAudioSource.Play();
                             audioPlayed = true;
                         }
                         timer += Time.deltaTime;
@@ -90,7 +93,7 @@ public class AiGlitch : BaseStoryEvent
                     if(!choiceMade)
                     {
                         textObject.SetActive(true);
-                        textUI.text = "1. I didn’t mean to pry. Let’s just move on. \n2. What exactly was I not supposed to see? ";
+                        textUI.text = "1. What exactly was I not supposed to see? \n2. I didn’t mean to pry. Let’s just move on. ";
                     }
                     if(Input.GetKeyDown(KeyCode.Alpha1)) // Question AI
                     { 
@@ -121,7 +124,7 @@ public class AiGlitch : BaseStoryEvent
             charIndex = 0;
             textUI.text = "";
             lineCompleted = false;
-            audioSource.resource = currentClips[currentLineIndex];
+            textAudioSource.resource = currentClips[currentLineIndex];
             audioPlayed = false;
         }
         else
