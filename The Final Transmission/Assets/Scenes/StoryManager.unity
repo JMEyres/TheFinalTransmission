@@ -170,12 +170,13 @@ MonoBehaviour:
   - AiGlitch
   - ConflictingInfo
   - Explosions
-  - AngerSystemWipe
+  - LockOut
   - FileDelete
   - DistantSounds
   - ClosingInfo
   - FinalTransmission
   savedChoice: 
+  currentIndex: 0
   AiReputation: 50
   currentEvent: 
 --- !u!1 &1912910044

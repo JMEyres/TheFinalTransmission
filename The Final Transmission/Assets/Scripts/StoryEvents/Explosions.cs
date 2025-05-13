@@ -11,7 +11,7 @@ public class Explosions : BaseStoryEvent
     [SerializeField] GameObject textObject;
     [SerializeField] TextMeshProUGUI textUI;
     [TextArea] public List<string> accusedText;
-    [TextArea] public List<AudioClip> accusedAudioClips;
+    public List<AudioClip> accusedAudioClips;
     public float flashSpeed = 2f;        // Speed of the pulse
     public float minIntensity = 0f;      // Lowest intensity
     public float maxIntensity = 50f;      // Highest intensity
@@ -41,7 +41,7 @@ public class Explosions : BaseStoryEvent
                 textAudioSource.Stop();
                 audioPlayed = true;
                 StoryManager.Instance.ResumeTimeline();
-                if(accused) StoryManager.Instance.TriggerEvent("AngerSystemWipe");
+                if(accused) StoryManager.Instance.TriggerEvent("LockOut");
                 else {
                     StoryManager.Instance.currentIndex++;
                     StoryManager.Instance.TriggerEvent("FileDelete");

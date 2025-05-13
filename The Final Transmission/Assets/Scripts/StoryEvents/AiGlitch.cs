@@ -13,7 +13,7 @@ public class AiGlitch : BaseStoryEvent
     [SerializeField] private PlayerInteraction playerInteraction;
     [SerializeField] private CameraController cameraController;
     [TextArea] public List<string> glitchText, choice1Text, choice2Text;
-    [TextArea] public List<AudioClip> glitchAudioClips, choice1Clips, choice2Clips;
+    public List<AudioClip> glitchAudioClips, choice1Clips, choice2Clips;
     private List<string> currentText;
     private List<AudioClip> currentClips;
     public float typeSpeed = 0.05f;
