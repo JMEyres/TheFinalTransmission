@@ -7,14 +7,17 @@ public class ConflictingInfo : BaseStoryEvent
     private bool endEvent;
     private string priorChoice;
 
+    private bool skipped = false;
+
     void Update()
     {
         if(triggered)
         {
-            if(Input.GetKeyDown(KeyCode.Return))
+            if(Input.GetKeyDown(KeyCode.Return) && !skipped)
             {
                 StoryManager.Instance.ResumeTimeline();
                 logClose.triggeredEvent = true;
+                skipped = true;
             }
 
             if(StoryManager.Instance.savedChoice == "Question")

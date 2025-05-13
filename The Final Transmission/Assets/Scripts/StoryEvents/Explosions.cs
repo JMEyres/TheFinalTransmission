@@ -10,23 +10,23 @@ public class Explosions : BaseStoryEvent
     [SerializeField] GameObject directionalLight;
     [SerializeField] GameObject textObject;
     [SerializeField] TextMeshProUGUI textUI;
-    [TextArea] public List<string> accusedText;
-    public List<AudioClip> accusedAudioClips;
+    [TextArea] public List<string> accusedText, containedText;
+    public List<AudioClip> accusedAudioClips, containedAudioClips;
     public float flashSpeed = 2f;        // Speed of the pulse
     public float minIntensity = 0f;      // Lowest intensity
     public float maxIntensity = 50f;      // Highest intensity
     public bool isFlashing = true;
     private bool increasing, qte = true;
-    private bool audioPlayed, hasPlayedAudio, hasPlayedExplosion, accused, lineCompleted, endAfterTyping, endEvent = false;
+    private bool audioPlayed, hasPlayedAudio, hasPlayedExplosion, accused, lineCompleted, endAfterTyping, endEvent, stopAlarm = false;
     private float qteTimer;
 
     private List<string> currentText;
     private List<AudioClip> currentClips;
     public float typeSpeed = 0.05f;
-    private float timer = 0f;
+    private float timer, waitTimer = 0f;
     private int charIndex = 0;
     private int currentLineIndex = 0;
-    private bool isTyping = true;
+    private bool isTyping = false;
 
     // Update is called once per frame
     void Update()
@@ -40,12 +40,16 @@ public class Explosions : BaseStoryEvent
                 alarmAudioSource.Stop();
                 textAudioSource.Stop();
                 audioPlayed = true;
-                StoryManager.Instance.ResumeTimeline();
-                if(accused) StoryManager.Instance.TriggerEvent("LockOut");
+                if(accused){
+                    StoryManager.Instance.ResumeTimeline();
+                    StoryManager.Instance.TriggerEvent("LockOut");
+                }
+
                 else {
                     StoryManager.Instance.currentIndex++;
+                    StoryManager.Instance.ResumeTimeline();
                     StoryManager.Instance.TriggerEvent("FileDelete");
-                    }
+                }
                 isFlashing = false;
                 alarmLight.intensity = 0;
                 triggered = false;
@@ -69,75 +73,84 @@ public class Explosions : BaseStoryEvent
                     if(Input.GetKeyDown(KeyCode.Alpha1)) {
                         accused = true;
                         SetAiText(accusedText, accusedAudioClips);
+                        isTyping = true;
                         endAfterTyping = true;
                         qte = false;
                         qteTimer = 0f;
                     }
                 }
                 else{ // run out of time
-                    qte = false;
-                    endEvent = true;
+                    textObject.SetActive(false);
+                    waitTimer+=Time.deltaTime;
+                    if(waitTimer > 5)
+                    {
+                        stopAlarm = true;
+                        SetAiText(containedText, containedAudioClips);
+                        isTyping = true;
+                        qte = false;
+                        endAfterTyping = true;
+                    }
                 }
             }
 
-            if(accused)
+            if (isTyping)
             {
-                if (isTyping)
+                textObject.SetActive(true);
+                if(currentLineIndex == 0 && currentClips.Count != 0)
                 {
-                    textObject.SetActive(true);
-                    if(currentLineIndex == 0 && currentClips.Count != 0)
-                    {
-                        textAudioSource.resource=currentClips[currentLineIndex];
-                    }
-
-                    if (charIndex < currentText[currentLineIndex].Length)
-                    {
-                        if(!audioPlayed && currentClips.Count != 0) 
-                        {
-                            textAudioSource.Play();
-                            audioPlayed = true;
-                        }
-                        timer += Time.deltaTime;
-
-                        if (timer >= typeSpeed)
-                        {
-                            timer = 0f;
-                            textUI.text += currentText[currentLineIndex][charIndex];
-                            charIndex++;
-                        }
-                    }
-                    else if (!lineCompleted)
-                    {
-                        lineCompleted = true;
-                        Invoke("NextLine", 2.5f);
-                    }
-                    
+                    textAudioSource.resource=currentClips[currentLineIndex];
                 }
+
+                if (charIndex < currentText[currentLineIndex].Length)
+                {
+                    if(!audioPlayed && currentClips.Count != 0) 
+                    {
+                        textAudioSource.Play();
+                        audioPlayed = true;
+                    }
+                    timer += Time.deltaTime;
+
+                    if (timer >= typeSpeed)
+                    {
+                        timer = 0f;
+                        textUI.text += currentText[currentLineIndex][charIndex];
+                        charIndex++;
+                    }
+                }
+                else if (!lineCompleted)
+                {
+                    lineCompleted = true;
+                    Invoke("NextLine", 2.5f);
+                }
+                
             }
-
-            if (increasing)
+        
+            if(!stopAlarm)
             {
-                if (!hasPlayedAudio)
+                if (increasing)
                 {
-                    alarmAudioSource.Play();
-                    hasPlayedAudio = true;
+                    if (!hasPlayedAudio)
+                    {
+                        alarmAudioSource.Play();
+                        hasPlayedAudio = true;
+                    }
+                    alarmLight.intensity += change;
+                    if (alarmLight.intensity >= maxIntensity)
+                    {
+                        alarmLight.intensity = maxIntensity;
+                        increasing = false;
+                    }
                 }
-                alarmLight.intensity += change;
-                if (alarmLight.intensity >= maxIntensity)
+                else
                 {
-                    alarmLight.intensity = maxIntensity;
-                    increasing = false;
-                }
-            }
-            else
-            {
-                alarmAudioSource.Stop();
-                alarmLight.intensity -= change;
-                if (alarmLight.intensity <= minIntensity)
-                {
-                    alarmLight.intensity = minIntensity;
-                    increasing = true;
-                    hasPlayedAudio = false;
+                    alarmAudioSource.Stop();
+                    alarmLight.intensity -= change;
+                    if (alarmLight.intensity <= minIntensity)
+                    {
+                        alarmLight.intensity = minIntensity;
+                        increasing = true;
+                        hasPlayedAudio = false;
+                    }
                 }
             }
 

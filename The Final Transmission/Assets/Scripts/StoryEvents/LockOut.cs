@@ -38,6 +38,7 @@ public class LockOut : BaseStoryEvent
                 textAudioSource.Stop();
                 audioPlayed = true;
                 StoryManager.Instance.ResumeTimeline();
+                StoryManager.Instance.currentIndex++;
                 triggered = false;
                 return;
             }
