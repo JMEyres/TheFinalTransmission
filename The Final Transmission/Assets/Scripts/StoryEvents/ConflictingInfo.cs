@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public class ConflictingInfo : BaseStoryEvent
-{
+{   
+    [SerializeField] GameObject logIcon;
     [SerializeField] CrewLog conflictingLog;
     [SerializeField] CloseWindow logClose;
     private bool endEvent;
@@ -13,6 +14,8 @@ public class ConflictingInfo : BaseStoryEvent
     {
         if(triggered)
         {
+            logIcon.SetActive(true);
+            
             if(Input.GetKeyDown(KeyCode.Return) && !skipped)
             {
                 StoryManager.Instance.ResumeTimeline();

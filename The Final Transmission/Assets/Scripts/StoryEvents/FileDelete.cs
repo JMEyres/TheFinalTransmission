@@ -56,8 +56,6 @@ public class FileDelete : BaseStoryEvent
                 }
                 else if(logIndex >= logsToDelete.Count){
                     Debug.Log("Files Deleted Successfully");
-                    deleteAudio.resource = successAudio;
-                    deleteAudio.Play();
                     progressBarObject.SetActive(false);
                     endEvent = true;
                 }

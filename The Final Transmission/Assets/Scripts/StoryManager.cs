@@ -15,7 +15,7 @@ public class StoryManager : MonoBehaviour
 
     float timer = 0;
     public int currentIndex = 0;
-    public bool timelinePaused = false;
+    public bool timelinePaused = true;
 
     public int AiReputation = 50;
     public string currentEvent = "";
@@ -30,8 +30,15 @@ public class StoryManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        SceneManager.LoadScene("StartingSequence", LoadSceneMode.Additive);
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    void Start()
+    {
+        
+    }
+
     public void RegisterTarget(string id, StoryEvent receiver)
     {
         if (!storyEventRecievers.ContainsKey(id))

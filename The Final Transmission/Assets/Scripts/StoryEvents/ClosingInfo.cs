@@ -22,6 +22,7 @@ public class ClosingInfo : BaseStoryEvent
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        textUI.text = "";
         currentText = openingText;
         currentClips = openingAudioClips;
     }
@@ -83,9 +84,9 @@ public class ClosingInfo : BaseStoryEvent
                     "\n2. Play an audio transcript between two crewmates discussing their plan to leave."+
                     "\n3. Read a crew log detailing inconsistencies and system interference.";
 
-                    if(Input.GetKeyDown(KeyCode.Alpha1)) {playerChoice = 1; SetAiText(c1Text, c1AudioClips); choice1Made = true;}
+                    if(Input.GetKeyDown(KeyCode.Alpha1)) {playerChoice = 1; SetAiText(c1Text, c1AudioClips); choice1Made = true; StoryManager.Instance.AiRep(10);}
                     else if(Input.GetKeyDown(KeyCode.Alpha2)) {playerChoice = 2; SetAiText(c2Text, c2AudioClips); choice1Made = true;}
-                    else if(Input.GetKeyDown(KeyCode.Alpha3)) {playerChoice = 3; SetAiText(c3Text, c3AudioClips); choice1Made = true;}
+                    else if(Input.GetKeyDown(KeyCode.Alpha3)) {playerChoice = 3; SetAiText(c3Text, c3AudioClips); choice1Made = true; StoryManager.Instance.AiRep(-10);}
                 }
                 else
                 {

@@ -6,8 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/StoryManager.unity
+    guid: 5cfdb3129f7746b4f8f585255d701c0b
+  - enabled: 1
     path: Assets/Scenes/StartingSequence.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/MainGame.unity
+    guid: 765fcedf4c5d7b847a1eeeb4b9a348c9
+  - enabled: 1
+    path: Assets/Scenes/CrewEnding.unity
+    guid: 9a211377262c3cc46be0100e93adbb8d
+  - enabled: 1
+    path: Assets/Scenes/NeutralEnding.unity
+    guid: 16829bff09e31f8428b2bfb3273871d9
+  - enabled: 1
+    path: Assets/Scenes/AIEnding.unity
+    guid: 369d8101f213eeb4fabd7cbec0247b6b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

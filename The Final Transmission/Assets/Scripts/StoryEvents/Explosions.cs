@@ -28,6 +28,10 @@ public class Explosions : BaseStoryEvent
     private int currentLineIndex = 0;
     private bool isTyping = false;
 
+    void Awake()
+    {
+        textUI.text = "";
+    }
     // Update is called once per frame
     void Update()
     {
@@ -36,6 +40,7 @@ public class Explosions : BaseStoryEvent
             if(Input.GetKeyDown(KeyCode.Return) || endEvent)
             {
                 textObject.SetActive(false);
+                textUI.text = "";
                 isTyping = false;
                 alarmAudioSource.Stop();
                 textAudioSource.Stop();
@@ -73,6 +78,7 @@ public class Explosions : BaseStoryEvent
                     if(Input.GetKeyDown(KeyCode.Alpha1)) {
                         accused = true;
                         SetAiText(accusedText, accusedAudioClips);
+                        StoryManager.Instance.AiRep(-15);
                         isTyping = true;
                         endAfterTyping = true;
                         qte = false;

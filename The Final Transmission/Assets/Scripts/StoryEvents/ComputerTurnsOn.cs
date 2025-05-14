@@ -21,13 +21,21 @@ public class ComputerTurnsOn : BaseStoryEvent
     {
         if(triggered)
         {
-            if(Input.GetKeyDown(KeyCode.Return) || endEvent)
+            if(Input.GetKeyDown(KeyCode.Return))
             {
                 screenMesh.material.color = Color.white;
                 screenOn = true;
                 StoryManager.Instance.ResumeTimeline();
                 StoryManager.Instance.TriggerEvent("AiGlitch");
                 glitchLogTrigger.triggeredEvent = true;
+                triggered = false;
+                return;
+            }
+            if(endEvent)
+            {
+                screenMesh.material.color = Color.white;
+                screenOn = true;
+                StoryManager.Instance.ResumeTimeline();
                 triggered = false;
                 return;
             }

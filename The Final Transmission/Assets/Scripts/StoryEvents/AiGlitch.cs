@@ -105,7 +105,7 @@ public class AiGlitch : BaseStoryEvent
                     } 
                     if(Input.GetKeyDown(KeyCode.Alpha2)) // Ignore AI
                     { 
-                        StoryManager.Instance.AiRep(-5);
+                        StoryManager.Instance.AiRep(-10);
                         StoryManager.Instance.savedChoice = "Ignore";
                         crewLog.SetActive(true); // need to make it so when player closes log it resumes timeline
                         endEvent = true;
