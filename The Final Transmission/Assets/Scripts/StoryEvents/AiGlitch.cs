@@ -21,7 +21,7 @@ public class AiGlitch : BaseStoryEvent
     private int charIndex = 0;
     private int currentLineIndex = 0;
     private bool isTyping = true;
-    private bool lineCompleted, audioPlayed, glitchAudioPlayed, endEvent, endAfterTyping, choiceMade = false;
+    private bool lineCompleted, audioPlayed, glitchAudioPlayed, endEvent, endAfterTyping, choiceMade, ignore = false;
 
     // Update is called once per frame
     void Update()
@@ -38,7 +38,8 @@ public class AiGlitch : BaseStoryEvent
                 audioPlayed = true;
                 choiceMade = true;
                 StoryManager.Instance.ResumeTimeline();
-                StoryManager.Instance.savedChoice = "Ignore";
+                if(ignore) StoryManager.Instance.savedChoice = "Ignore";
+                else StoryManager.Instance.savedChoice = "Question";
                 StoryManager.Instance.TriggerEvent("ConflictingInfo");
                 triggered = false;
                 return;
@@ -100,14 +101,13 @@ public class AiGlitch : BaseStoryEvent
                     { 
                         SetAiText(choice1Text, choice1Clips); 
                         StoryManager.Instance.AiRep(5);
-                        StoryManager.Instance.savedChoice = "Question";
                         endAfterTyping = true;
                     } 
                     if(Input.GetKeyDown(KeyCode.Alpha2)) // Ignore AI
                     { 
+                        ignore = true;
                         StoryManager.Instance.AiRep(-10);
-                        StoryManager.Instance.savedChoice = "Ignore";
-                        crewLog.SetActive(true); // need to make it so when player closes log it resumes timeline
+                        crewLog.SetActive(true); // incriminating log
                         endEvent = true;
                     } 
 

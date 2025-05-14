@@ -819,6 +819,7 @@ MonoBehaviour:
   window: {fileID: 105954127}
   iconController: {fileID: 269410563}
   triggeredEvent: 0
+  resumeTimeline: 0
 --- !u!1 &110140632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,7 +1884,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 35439b1dff5aec74cb1363f988db5458, type: 3}
   - {fileID: 8300000, guid: 030309e0a2a0e73468d5c8627a03b280, type: 3}
   - {fileID: 8300000, guid: 79b89deaa7d3571468341f68ef052963, type: 3}
-  - {fileID: 8300000, guid: 2b8944777c5886a4f84c9d70729596f0, type: 3}
+  - {fileID: 8300000, guid: 9e39737fd14508a46bc76a19fa151060, type: 3}
   choice2Clips:
   - {fileID: 8300000, guid: 5c1b4b3e557ca8e4e96e569c33e509d9, type: 3}
   typeSpeed: 0.05
@@ -5166,6 +5167,7 @@ MonoBehaviour:
   window: {fileID: 411957043}
   iconController: {fileID: 269410563}
   triggeredEvent: 0
+  resumeTimeline: 0
 --- !u!1 &428555174
 GameObject:
   m_ObjectHideFlags: 0
@@ -5509,6 +5511,7 @@ MonoBehaviour:
   window: {fileID: 456055840}
   iconController: {fileID: 269410563}
   triggeredEvent: 0
+  resumeTimeline: 0
 --- !u!1 &463175457
 GameObject:
   m_ObjectHideFlags: 0
@@ -5789,7 +5792,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 100}
+  m_AnchoredPosition: {x: -198.2, y: 186.8}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &505771386
@@ -6660,6 +6663,7 @@ MonoBehaviour:
   window: {fileID: 680729126}
   iconController: {fileID: 269410563}
   triggeredEvent: 0
+  resumeTimeline: 0
 --- !u!1001 &680856212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6693,7 +6697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1440999952689792785, guid: a6546f27f10ad704083f4f204b8bde3a, type: 3}
       propertyPath: title
-      value: "Crew Log \u2013 Partial Transcript"
+      value: Ai Incriminating Log
       objectReference: {fileID: 0}
     - target: {fileID: 1440999952689792785, guid: a6546f27f10ad704083f4f204b8bde3a, type: 3}
       propertyPath: logObject
@@ -6858,6 +6862,7 @@ MonoBehaviour:
   window: {fileID: 2115240967}
   iconController: {fileID: 269410563}
   triggeredEvent: 0
+  resumeTimeline: 0
 --- !u!1001 &696488680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8837,6 +8842,7 @@ MonoBehaviour:
   window: {fileID: 878716791}
   iconController: {fileID: 269410563}
   triggeredEvent: 0
+  resumeTimeline: 0
 --- !u!114 &878716794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12312,7 +12318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1376746997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12330,7 +12336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -199.85, y: 184.25}
+  m_AnchoredPosition: {x: -199.85, y: 95.71}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1376746998
@@ -14042,6 +14048,7 @@ MonoBehaviour:
   window: {fileID: 1587143011}
   iconController: {fileID: 269410563}
   triggeredEvent: 0
+  resumeTimeline: 0
 --- !u!1 &1602483255
 GameObject:
   m_ObjectHideFlags: 0
@@ -17292,11 +17299,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 505771385}
   - {fileID: 1376746997}
   - {fileID: 1512238512}
   - {fileID: 1064404552}
   - {fileID: 1022604819}
-  - {fileID: 505771385}
   m_Father: {fileID: 269410562}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -19382,6 +19389,7 @@ MonoBehaviour:
   window: {fileID: 7217809806504904947}
   iconController: {fileID: 269410563}
   triggeredEvent: 0
+  resumeTimeline: 0
 --- !u!1 &7217809806504904947
 GameObject:
   m_ObjectHideFlags: 0

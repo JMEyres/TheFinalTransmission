@@ -37,7 +37,8 @@ public class ConflictingInfo : BaseStoryEvent
                 conflictingLog.UpdateLog(title,log);
             }
 
-            else if(StoryManager.Instance.savedChoice == "Ignore"){                
+            else if(StoryManager.Instance.savedChoice == "Ignore")
+            {              
                 string title = "Crew Log – Engineering Officer Ren";
                 string log = "Timestamp: [REDACTED]\n" +
                                     "Location: Aletheia – Engineering Subdeck 3\n\n" +

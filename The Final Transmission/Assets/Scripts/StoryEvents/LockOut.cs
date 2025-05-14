@@ -37,6 +37,7 @@ public class LockOut : BaseStoryEvent
                 isTyping = false;
                 textAudioSource.Stop();
                 audioPlayed = true;
+                textUI.text = "";
                 StoryManager.Instance.ResumeTimeline();
                 StoryManager.Instance.currentIndex++;
                 triggered = false;
@@ -75,8 +76,6 @@ public class LockOut : BaseStoryEvent
                     
                 }
 
-            lockOutScreen.SetActive(true);
-            computerScreen.SetActive(false);
             if(buttonValues[0].value == 8 && buttonValues[1].value == 4 && buttonValues[2].value == 6 && buttonValues[3].value == 2)
             {
                 computerScreen.SetActive(true);
@@ -103,6 +102,8 @@ public class LockOut : BaseStoryEvent
             textObject.SetActive(false);
             isTyping = false;
             currentLineIndex = 0;
+            lockOutScreen.SetActive(true);
+            computerScreen.SetActive(false);
             if(endAfterTyping) endEvent = true;
         }
     }

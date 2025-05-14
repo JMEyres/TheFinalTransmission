@@ -36,6 +36,7 @@ public class FileDelete : BaseStoryEvent
                 deleteAudio.Stop();
                 progressBarObject.SetActive(false);
                 StoryManager.Instance.ResumeTimeline();
+                text.text = "";
                 triggered = false;
                 return;
             }

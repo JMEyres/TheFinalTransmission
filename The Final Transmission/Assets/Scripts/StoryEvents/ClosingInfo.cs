@@ -96,8 +96,8 @@ public class ClosingInfo : BaseStoryEvent
                         textUI.text = "1. Sounds like you're rewriting history to suit yourself."+
                         "\n2. Go on. I want to understand.";
 
-                        if(Input.GetKeyDown(KeyCode.Alpha1)) {SetAiText(c1A1text, c1A1Clips); choice2made = true;}
-                        else if(Input.GetKeyDown(KeyCode.Alpha2)) {SetAiText(c1A2Text, c1A2Clips); choice2made = true;}
+                        if(Input.GetKeyDown(KeyCode.Alpha1)) {SetAiText(c1A1text, c1A1Clips); choice2made = true; StoryManager.Instance.AiRep(-5);}
+                        else if(Input.GetKeyDown(KeyCode.Alpha2)) {SetAiText(c1A2Text, c1A2Clips); choice2made = true;StoryManager.Instance.AiRep(5);}
                     }
                     else if(playerChoice == 1 && !choice2Break)
                     {
