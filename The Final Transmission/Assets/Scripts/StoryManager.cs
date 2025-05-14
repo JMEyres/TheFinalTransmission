@@ -15,7 +15,7 @@ public class StoryManager : MonoBehaviour
 
     float timer = 0;
     public int currentIndex = 0;
-    private bool timelinePaused = false;
+    public bool timelinePaused = false;
 
     public int AiReputation = 50;
     public string currentEvent = "";

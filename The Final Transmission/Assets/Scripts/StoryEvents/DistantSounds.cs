@@ -19,6 +19,15 @@ public class DistantSounds : BaseStoryEvent
     {
         if(triggered)
         {
+            if(Input.GetKeyDown(KeyCode.Return))
+            {
+                for(int i =0; i< audioSources.Count; i++)
+                {
+                    if(audioSources[i].isPlaying) audioSources[i].Stop();
+                }
+                StoryManager.Instance.ResumeTimeline();
+                triggered = false;
+            }
             timer+=Time.deltaTime;
 
             if(index < audioSources.Count && timer > timings[index])
@@ -29,6 +38,7 @@ public class DistantSounds : BaseStoryEvent
             }
             else if(index >= audioSources.Count && !audioSources[index-1].isPlaying){
                 StoryManager.Instance.ResumeTimeline();
+                triggered = false;
             }
         }
     }

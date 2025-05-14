@@ -177,7 +177,8 @@ MonoBehaviour:
   - FinalTransmission
   savedChoice: 
   currentIndex: 0
-  AiReputation: 50
+  timelinePaused: 0
+  AiReputation: 40
   currentEvent: 
 --- !u!1 &1912910044
 GameObject:
